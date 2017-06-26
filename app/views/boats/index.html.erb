@@ -1,3 +1,7 @@
 <div class="row">
   <h1 class="small-centered welcome"> Welcome to Monondach Marine </h1>
 </div>
+<% @boats.each do |boat| %>
+  <li> <%= boat.photo %> </li>
+  <li> <%= boat.boat_model %></li>
+  <% end %>

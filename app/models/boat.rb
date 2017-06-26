@@ -6,5 +6,4 @@ class Boat < ApplicationRecord
   validates :engine_make, presence: true
   validates :engine_model, presence: true
   validates :length, presence: true
-  validates :photo, presence: true
 end
