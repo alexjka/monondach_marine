@@ -8,30 +8,21 @@ class BoatsController < ApplicationController
     @boat = Boat.find(params[:id])
   end
 
-  # def new
-  #   @genre_collection = Genre.all
-  #   @release = Release.new
-  # end
-  #
-  # def create
-  #   if current_user
-  #     @user = current_user
-  #     @release = Release.new(release_params)
-  #     @release.user = @user
-  #     @release.genres = Genre.where(id: params[:release][:genre_ids])
-  #     if @release.save
-  #       flash[:notice] = "Release saved successfully."
-  #       redirect_to release_path(@release)
-  #     else
-  #       @genre_collection = Genre.all
-  #       render :new
-  #     end
-  #   else
-  #     flash[:notice] = "You must be logged in"
-  #     redirect_to new_user_session_path
-  #   end
-  # end
-  #
+  def new
+    @boat = Boat.new
+  end
+
+  def create
+      @boat = Boat.new(boat_params)
+      if @boat.save
+        flash[:notice] = "Boat listing saved successfully."
+        redirect_to boat_path(@boat)
+      else
+        flash[:notice] = "Please try again"
+        redirect_to new_boat_path
+      end
+  end
+
   # def edit
   #   @release = Release.find(params[:id])
   #   @genre_collection = Genre.all
@@ -55,19 +46,21 @@ class BoatsController < ApplicationController
   #     redirect_to root_path
   # end
 
-  # private
-  #
-  # def release_params
-  #   params.require(:release).permit(
-  #     :title,
-  #     :artist,
-  #     :performer,
-  #     :year,
-  #     :studio,
-  #     :no_of_tracks,
-  #     :album_art_url,
-  #     :description,
-  #     :search
-  #   )
-  # end
+  private
+
+  def boat_params
+    params.require(:boat).permit(
+      :boat_year,
+      :boat_make,
+      :boat_model,
+      :engine_year,
+      :engine_make,
+      :engine_model,
+      :engine_hours,
+      :length,
+      :photo,
+      :video,
+      :description,
+    )
+  end
 end
